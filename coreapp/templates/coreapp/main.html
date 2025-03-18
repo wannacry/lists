@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lists</title>
+    <link rel="stylesheet"  href="{% static 'css/styles.css' %}">
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+
+        <header class="header">
+            <div class="header_container1200">
+                <div class="header_content">
+                    <div class="header_logotype">
+                        <a href="#" class="header_logotype_link">
+                            <span class="header_logotype_text">Lists</span>
+                        </a>
+                    </div>
+
+                    <!-- <div class="header_login">
+                        <a href="#" class="header_login_button">login | registration</a>
+                    </div> -->
+
+                    <div class="header_account">
+                        <div class="header_account_detail">
+                            <a href="#" class="header_account_detail_link">
+                                <img src="{% static 'images/profile_img.png' %}" alt="Avatar" class="header_account_img">
+                            </a>
+                        </div>
+                        <div class="header_account_menu icon-menu3">
+                            <div class="dropdown_menu">
+                                <ul class="dropdown_items">
+                                    <li class="dorpdown_item"><a href="#" class="dropdown_item_link ">Account</a></li>
+                                    <li class="dorpdown_item"><a href="#" class="dropdown_item_link">Settings</a></li>
+                                    <li class="dorpdown_item"><a href="#" class="dropdown_item_link">Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main">
+
+        </main>
+
+        <footer class="footer">
+
+        </footer>
+    </div>
+
+    <div class="open_overlay">
+        <div class="overlay">
+            <h2 class="overlay_title">Are you shure?</h2>
+            <p class="overlay_explanation">You will no longer be logged in on the current browser!</p>
+            <div class="overlay_btns">
+                <a href="#" class="logout_button">Logout</a>
+                <a href="#" class="cancel_overlay">Cancel</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="{%static 'scripts/scripts.js' %}"></script>
+</body>
+
+</html>
