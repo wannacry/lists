@@ -103,6 +103,7 @@ body {
 
 .header_login_button {
     padding: 12px 20px;
+    cursor:pointer;
 }
 
 .header_account {
@@ -213,8 +214,15 @@ body {
     padding-top: 20px;
 }
 
+.overlay_form{
+    display:flex;
+    gap:20px;
+}
+
 .logout_button {
     padding: 10px 40px;
+    font-size:18px;
+    cursor:pointer;
 }
 
 .cancel_overlay {
@@ -349,6 +357,13 @@ body {
     font-size: 1.25rem;
 }
 
+.login_error_message{
+    text-align:center;
+    opacity:50%;
+    padding:5px 0px;
+    font-size:0.875rem;
+}
+
 .helpful_links {
     width: 100%;
     padding-top: 5px;
@@ -412,6 +427,7 @@ body {
     margin-top: 10px;
     font-size: 1rem;
     font-size: 1.25rem;
+    cursor:pointer;
 }
 
 /* change_password */
@@ -456,6 +472,7 @@ body {
     margin-top: 10px;
     font-size: 1rem;
     font-size: 1.25rem;
+    cursor:pointer;
 }
 
 /* confirmed_access */
@@ -500,6 +517,7 @@ body {
     margin-top: 10px;
     font-size: 1rem;
     font-size: 1.25rem;
+    cursor:pointer;
 }
 
 /* reset_password */
@@ -544,6 +562,7 @@ body {
     margin-top: 10px;
     font-size: 1rem;
     font-size: 1.25rem;
+    cursor:pointer;
 }
 
 
@@ -602,6 +621,7 @@ body {
     margin-top: 10px;
     font-size: 1rem;
     font-size: 1.25rem;
+    cursor:pointer;
 }
 
 .QR_block {
@@ -750,6 +770,7 @@ body {
     padding-right: 75px;
     margin-top: 10px;
     font-size: 1.125rem;
+    cursor:pointer;
 }
 
 
@@ -818,6 +839,7 @@ body {
     margin-top: 10px;
     font-size: 1rem;
     font-size: 1.125rem;
+    cursor:pointer;
 }
 
 .change_setting_mfa_explanation {
@@ -833,4 +855,21 @@ body {
 .reverse_button {
     background-color: #34312E;
     border: 1px #657BA8 solid;
+    cursor:pointer;
+}
+/* email_change */
+.changing_email_info{
+    text-align:center;
+    font-size:0.875rem;
+    opacity:50%;
+}
+.changing_to{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+}
+.changing_to button{
+    cursor:pointer;
+    text-align:center;
+     padding: 12px 20px;
 }

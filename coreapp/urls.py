@@ -2,6 +2,8 @@
 from django.urls import path, include
 from . import views
 
+app_name = 'coreapp'
+
 urlpatterns = [
     path('', views.core, name='core'),
 ]

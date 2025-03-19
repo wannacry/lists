@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 {% load static %}
 {% load allauth i18n %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lists</title>
+    <title>Profile</title>
     <link rel="stylesheet"  href="{% static 'css/styles.css' %}">
 
 </head>
@@ -13,7 +13,6 @@
 <body>
 
     <div class="wrapper">
-
 
         <header class="header">
             <div class="header_container1200">
@@ -28,7 +27,7 @@
                     <div class="header_account">
                         <div class="header_account_detail">
                             <a href="{% url 'profileapp:profile' %}" class="header_account_detail_link">
-                                <img src="{% static 'images/profile_img.png' %}" alt="Avatar" class="header_account_img">
+                                <img src="{% static 'images/profile_img.png' %}" alt="Profile img" class="header_account_img">
                             </a>
                         </div>
                         <div class="header_account_menu icon-menu3">
@@ -49,14 +48,26 @@
                 </div>
             </div>
         </header>
+        <div class="main_container1200">
+            <main class="main">
+                <div class="account_settings_panel">
+                    <div class="panel_items">
+                        <a href="{% url 'profileapp:profile' %}" class="panel_item">{{ user.username }}</a>
+                        <a href="" class="panel_item">List</a>
+                        <a href="{% url 'profileapp:profile_settings' %}" class="panel_item">Settings</a>
 
-        <main class="main">
+                    </div>
+                    <a href="#" class="panel_item_logout">Logout</a>
+                </div>
 
-        </main>
-
+                </div>
+            </main>
+        </div>
         <footer class="footer">
 
         </footer>
+    </div>
+
     </div>
 
     <div class="open_overlay">
@@ -73,7 +84,7 @@
         </div>
     </div>
 
+
     <script src="{%static 'scripts/scripts.js' %}"></script>
 </body>
-
 </html>

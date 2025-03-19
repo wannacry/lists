@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load allauth i18n %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setting</title>
+     <link rel="stylesheet"  href="{% static 'css/styles.css' %}">
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        <header class="header">
+            <div class="header_container1200">
+                <div class="header_content">
+                    <div class="header_logotype">
+                        <a href="#" class="header_logotype_link">
+                            <span class="header_logotype_text">Lists</span>
+                        </a>
+                    </div>
+
+                   {% if user.is_authenticated %}
+                    <div class="header_account">
+                        <div class="header_account_detail">
+                            <a href="#" class="header_account_detail_link">
+                                <img src="{% static 'images/profile_img.png' %}" alt="Avatar" class="header_account_img">
+                            </a>
+                        </div>
+                        <div class="header_account_menu icon-menu3">
+                            <div class="dropdown_menu">
+                                <ul class="dropdown_items">
+                                    <li class="dorpdown_item"><a href="#" class="dropdown_item_link ">Account</a></li>
+                                    <li class="dorpdown_item"><a href="" class="dropdown_item_link">Settings</a></li>
+                                    <li class="dorpdown_item"><a href="#" class="dropdown_item_link">Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="header_login">
+                        <a href="{% url 'account_login' %}" class="header_login_button">login | registration</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </header>
+        <div class="main_container1200">
+            <main class="main">
+                <div class="account_settings_panel">
+                    <div class="panel_items">
+                        <a href="#" class="panel_item">Profile</a>
+                        <a href="#" class="panel_item">Security and login</a>
+                    </div>
+                    <a href="#" class="panel_item_logout">Logout</a>
+                </div>
+                <div class="profile_settings">
+                    <div class="profile_information">
+                        <form action="#" class="profile_info_form" method="post">
+                            <h2 class="profile_info_title">Profile information</h2>
+                            <input type="text" placeholder="nickname" class="info_input">
+                            <div class="option_input_container icon-cheveron-down">
+                                <input type="text" readonly class="info_input option_input" value="Not specified">
+                                <div class="sex_options_container">
+                                    <ul class="sex_options_menu">
+                                        <li class="sex_option_item" value="Male">Not specified</li>
+                                        <li class="sex_option_item" value="Male">Male</li>
+                                        <li class="sex_option_item" value="Female">Female</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <textarea name="" id="" placeholder="About" class="info_input about_area"></textarea>
+                            <input type="submit" class="login_submit_button profile_info_save_button" value="Save">
+                        </form>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <footer class="footer">
+
+        </footer>
+    </div>
+
+    </div>
+
+    <div class="open_overlay">
+        <div class="overlay">
+            <h2 class="overlay_title">Are you shure?</h2>
+            <p class="overlay_explanation">You will no longer be logged in on the current browser!</p>
+            <div class="overlay_btns">
+                <form action="{% url 'account_logout'%}" method="post" class="overlay_form">
+                    {% csrf_token %}
+                     <input type="hidden" name="next" value="/profile/settings/security/">
+                <button type="submit" class="logout_button">Logout</button>
+                <a href="" class="cancel_overlay">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="{%static 'scripts/scripts.js' %}"></script>
+</body>
+
+
+</html>

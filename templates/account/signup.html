@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load allauth account %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet"  href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <section class="registration_form_container">
+            <a href="{% url 'coreapp:core'%}" class="back_link icon-circle-left"></a>
+            <div class="form_container_logotype ">
+                <span class="form_logotype_text">Lists</span>
+            </div>
+            <div class="social_media_registration">
+                <h2 class="social_media_title">Social media registration</h2>
+                <div class="social_media_links">
+                    <div class="social_media_div"><a href="#" class="social_media_link icon-google"></a></div>
+                    <div class="social_media_div"><a href="#" class="social_media_link icon-facebook"></a></div>
+                    <div class="social_media_div"><a href="#" class="social_media_link icon-twitter"></a></div>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="default_registration">
+                <form action="{% url 'account_signup' %}" method="post" class="registration_form_inputs">
+                    {% csrf_token %}
+                    <h2 class="default_title">Default registration</h2>
+                    <input class="registration_input" type="text" name="username" placeholder="Username" autocomplete="username"required="" id="id_username">
+                    <input class="registration_input" type="email" name="email" placeholder="Email" autocomplete="email" maxlength="320" id="id_email" required>
+                    <input class="registration_input" type="password" name="password1" placeholder="Password" autocomplete="new-password" required="" aria-describedby="id_password1_helptext" id="id_password1">
+                    <input class="registration_input" type="password" name="password2" placeholder="Password (again)" autocomplete="new-password" required="" id="id_password2">
+                    <button type="submit" class="registration_submit_button" >Registration</button>
+                    {% if form.errors %}
+                            <div class="login_error_message">
+                                {% for field, errors in form.errors.items %}
+                                    {% for error in errors %}
+                                        <p class="error_message_text">{{ error }}</p>
+                                    {% endfor %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                </form>
+            </div>
+            <div class="helpful_links">
+                <p><span>Already have an account? </span><a href="{% url 'account_login' %}" class="helpful_link">Login</a></p>
+            </div>
+        </section>
+    </div>
+
+   <script src="{%static 'scripts/scripts.js' %}"></script>
+</body>
+
+</html>

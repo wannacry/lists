@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load allauth i18n %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setting</title>
+    <link rel="stylesheet"  href="{% static 'css/styles.css' %}">
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        <header class="header">
+            <div class="header_container1200">
+                <div class="header_content">
+                    <div class="header_logotype">
+                        <a href="{% url 'coreapp:core'%}" class="header_logotype_link">
+                            <span class="header_logotype_text">Lists</span>
+                        </a>
+                    </div>
+
+                    {% if user.is_authenticated %}
+                    <div class="header_account">
+                        <div class="header_account_detail">
+                            <a href="{% url 'profileapp:profile' %}" class="header_account_detail_link">
+                                <img src="{% static 'images/profile_img.png' %}" alt="Profile img" class="header_account_img">
+                            </a>
+                        </div>
+                        <div class="header_account_menu icon-menu3">
+                            <div class="dropdown_menu">
+                                <ul class="dropdown_items">
+                                    <li class="dorpdown_item"><a href="{% url 'profileapp:profile' %}" class="dropdown_item_link ">Account</a></li>
+                                    <li class="dorpdown_item"><a href="{% url 'profileapp:profile_settings' %}" class="dropdown_item_link">Settings</a></li>
+                                    <li class="dorpdown_item"><a href="#" class="dropdown_item_link">Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="header_login">
+                        <a href="{% url 'account_login' %}" class="header_login_button">login | registration</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </header>
+        <div class="main_container1200">
+            <main class="main">
+                <div class="account_settings_panel">
+                    <div class="panel_items">
+                        <a href="{% url 'profileapp:profile' %}" class="panel_item">{{ user.username }}</a>
+                        <a href="" class="panel_item">List</a>
+                        <a href="{% url 'profileapp:profile_settings' %}" class="panel_item">Settings</a>
+
+                    </div>
+                    <a href="#" class="panel_item_logout">Logout</a>
+                </div>
+
+                <div class="security_login_container">
+                    <div class="security_login_settings">
+                        <form class="change_setting" action="{% url 'account_change_password' %}" method="post">
+                            {% csrf_token %}
+                            <h2 class="change_setting_title">Change password</h2>
+                            <input class="change_setting_input" type="password" name="oldpassword" placeholder="Current password" autocomplete="current-password" required="" id="id_oldpassword">
+                            <input class="change_setting_input" type="password" name="password1" placeholder="New password" autocomplete="new-password" required="" aria-describedby="id_password1_helptext" id="id_password1">
+                            <input class="change_setting_input" type="password" name="password2" placeholder="New password (again)" required="" id="id_password2">
+                            <button type="submit" class="change_settings_button">Save</button>
+                            {% if form.errors %}
+                            <div class="login_error_message">
+                                {% for field, errors in form.errors.items %}
+                                    {% for error in errors %}
+                                        <p class="error_message_text">{{ error }}</p>
+                                    {% endfor %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        </form>
+
+                    </div>
+
+                    <div class="security_login_settings">
+                        <form class="change_setting" action="{% url 'account_email' %}" method="post">
+                            {% csrf_token %}
+                            <h2 class="change_setting_title">Change email</h2>
+                            {% if user.email %}
+                            <input value="{{ user.email }}"  class="change_setting_input" type="email" name="email" placeholder="Email" maxlength="320" required="" id="id_email">
+                            {% else %}
+                            <input class="change_setting_input" name="email" id="id_email" type="email">
+                            {% endif %}
+                            <button type="submit" name="action_add" class="change_settings_button">Change</button>
+                        </form>
+
+
+                    </div>
+                    <div class="security_login_settings">
+                        <form class="change_setting" action="#" method="post">
+                            <h2 class="change_setting_mfa_title">Two-factor authentication</h2>
+                            <p class="change_setting_mfa_explanation">Two-factor authentication is not active</p>
+                            <a class="change_settings_button">Activate</a>
+                        </form>
+
+                    </div>
+                    <div class="security_login_settings">
+                        <form class="change_setting" action="#" method="post">
+                            <h2 class="change_setting_mfa_title">Two-factor authentication</h2>
+                            <p class="change_setting_mfa_explanation">Two-factor authentication is not active</p>
+                            <a class="change_settings_button reverse_button">Deactivate</a>
+                        </form>
+
+                    </div>
+                </div>
+            </main>
+        </div>
+        <footer class="footer">
+
+        </footer>
+    </div>
+
+    </div>
+
+    <div class="open_overlay">
+        <div class="overlay">
+            <h2 class="overlay_title">Are you shure?</h2>
+            <p class="overlay_explanation">You will no longer be logged in on the current browser!</p>
+            <div class="overlay_btns">
+                <form action="{% url 'account_logout'%}" method="post" class="overlay_form">
+                    {% csrf_token %}
+                <button type="submit" class="logout_button">Logout</button>
+                <a href="" class="cancel_overlay">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="{%static 'scripts/scripts.js' %}"></script>
+</body>
+</html>

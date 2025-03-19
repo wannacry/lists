@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% load static %}
+{% load allauth account %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Change</title>
+  <link rel="stylesheet"  href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+
+</form>
+    <div class="wrapper">
+        <section class="login_form_container">
+            <a href="{% url 'coreapp:core'%}" class="back_link icon-circle-left"></a>
+            <div class="form_container_logotype ">
+                <span class="form_logotype_text">Lists</span>
+            </div>
+
+
+            <div class="default_login">
+                {% if messages %}
+                    <div class="login_error_message">
+                        {% for message in messages %}
+                                <p class="error_message_text">{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                <form action="{% url 'account_email'%}" method="post" class="login_form_inputs">
+                    {% csrf_token %}
+                    <h2 class="default_title">Current email</h2>
+                        <input class="login_input" disabled="" id="current_email" placeholder="{{current_emailaddress.email}}" type="email">
+                    {% if new_emailaddress.email %}
+                    <h2 class="default_title">Changing email</h2>
+                    <input class="login_input" disabled="" id="new_email" placeholder="{{new_emailaddress.email}}" type="email">
+                    <p class="changing_email_info">Your email address is still pending verification</p>
+                    <div class="changing_to">
+                        <button class="reverse_button" form="pending-email" name="action_send" type="submit">Re-send Verification</button>
+                        <button class="reverse_button" form="pending-email" name="action_remove" type="submit">Cancel Change</button>
+                    </div>
+                    {% endif %}
+                    <h2 class="default_title">Change email</h2>
+
+
+                        <input class="login_input" name="email" id="id_email" type="email" placeholder="Email">
+                        <button type="submit" name="action_add" class="login_submit_button">Change</button>
+                        {% if form.errors %}
+                            <div class="login_error_message">
+                                {% for field, errors in form.errors.items %}
+                                    {% for error in errors %}
+                                        <p class="error_message_text">{{ error }}</p>
+                                    {% endfor %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                </form>
+{% endif %}
+            </div>
+
+        </section>
+    </div>
+<form style="display: none" id="pending-email" method="post" action="/account/email/">
+            <input type="hidden" name="csrfmiddlewaretoken" value="YNp7NrwjI2KNOFkgMc25d4kuWqD86zE06rs7SvT45apwuOOuE7CqmeyHg8F95thF">
+            <input type="hidden" name="email" value="augustusmykyta@gmail.com">
+        <button form="pending-email" name="action_send" type="submit">
+
+                            Re-send Verification
+
+</button></form>
+      <script src="{%static 'scripts/scripts.js' %}"></script>
+</body>
+
+</html>
