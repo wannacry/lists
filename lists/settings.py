@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
     'allauth',
     'allauth.account',
+    'allauth.mfa',
 ]
 
 MIDDLEWARE = [
@@ -158,6 +159,7 @@ ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_CONFIRMATION_AUTO_LOGIN = True
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 
+MFA_SUPPORTED_TYPES = "totp"
 
 # smtp settings
 EMAIL_BACKEND = os.getenv('EMAIL_BACKEND')

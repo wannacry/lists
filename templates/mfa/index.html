@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load allauth account %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MFA</title>
+    <link rel="stylesheet"  href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <section class="change_password_form_container">
+            <a href="{% url 'coreapp:core'%}" class="back_link icon-circle-left"></a>
+            <div class="form_container_logotype">
+                <span class="form_logotype_text">Lists</span>
+            </div>
+            <div class="default_change_password">
+                {% if messages %}
+                    <div class="login_error_message">
+                        {% for message in messages %}
+                            {% if message.tags == 'success' %}
+                                <p class="error_message_text">{{ message }}</p>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+        {% endif %}
+            </div>
+        </section>
+    </div>
+
+    <script src="../scripts/scripts.js"></script>
+</body>
+
+</html>

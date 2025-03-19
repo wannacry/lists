@@ -63,13 +63,14 @@
         </section>
     </div>
 <form style="display: none" id="pending-email" method="post" action="/account/email/">
-            <input type="hidden" name="csrfmiddlewaretoken" value="YNp7NrwjI2KNOFkgMc25d4kuWqD86zE06rs7SvT45apwuOOuE7CqmeyHg8F95thF">
+    {% csrf_token %}
             <input type="hidden" name="email" value="augustusmykyta@gmail.com">
         <button form="pending-email" name="action_send" type="submit">
 
                             Re-send Verification
 
-</button></form>
+</button>
+</form>
       <script src="{%static 'scripts/scripts.js' %}"></script>
 </body>
 

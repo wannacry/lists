@@ -1,0 +1,45 @@
+﻿    <!DOCTYPE html>
+    <html lang="en">
+    {% load static %}
+    {% load allauth account %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Access</title>
+        <link rel="stylesheet"  href="{% static 'css/styles.css' %}">
+    </head>
+
+    <body>
+
+        <div class="wrapper">
+            <section class="confirmed_access_form_container">
+                <a href="{% url 'coreapp:core'%}" class="back_link icon-circle-left"></a>
+                <div class="form_container_logotype ">
+                    <span class="form_logotype_text">Lists</span>
+                </div>
+                <div class="default_confirmed_access">
+                    <form action="{% url 'account_reauthenticate' %}" method="post" class="confirmed_access_form_inputs">
+                        {% csrf_token %}
+                        <h2 class="default_title">Confirm access</h2>
+                        <input class="confirmed_access_input" type="password" name="password" placeholder="Password" autocomplete="current-password" required="" aria-invalid="true" id="id_password">
+
+                        {{ redirect_field }}
+                        <button type="submit" class="confirmed_access_submit_button">Confirmed</button>
+                        {% if form.errors %}
+                            <div class="login_error_message">
+                                {% for field, errors in form.errors.items %}
+                                    {% for error in errors %}
+                                        <p class="error_message_text">{{ error }}</p>
+                                    {% endfor %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </form>
+                </div>
+            </section>
+        </div>
+
+        <script src="{%static 'scripts/scripts.js' %}"></script>
+    </body>
+
+    </html>

@@ -1,7 +1,8 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 {% load static %}
-{% load allauth i18n %}
+{% load allauth %}
+{% load i18n %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -96,21 +97,27 @@
 
 
                     </div>
+                    {% if "totp" in MFA_SUPPORTED_TYPES %}
+                    {% if authenticator%}
                     <div class="security_login_settings">
-                        <form class="change_setting" action="#" method="post">
+                        <form class="change_setting" action="{% url 'mfa_deactivate_totp'%}" method="post">
+                            {% csrf_token %}
                             <h2 class="change_setting_mfa_title">Two-factor authentication</h2>
                             <p class="change_setting_mfa_explanation">Two-factor authentication is not active</p>
-                            <a class="change_settings_button">Activate</a>
+                            <button type="submit" class="change_settings_button reverse_button">Deactivate</button>
                         </form>
+                        </div>
+                        {% else %}
 
-                    </div>
                     <div class="security_login_settings">
-                        <form class="change_setting" action="#" method="post">
+                        <form class="change_setting" action="{% url 'mfa_activate_totp'%}" method="post">
+                            {% csrf_token %}
                             <h2 class="change_setting_mfa_title">Two-factor authentication</h2>
                             <p class="change_setting_mfa_explanation">Two-factor authentication is not active</p>
-                            <a class="change_settings_button reverse_button">Deactivate</a>
+                            <button class="change_settings_button">Activate</button>
                         </form>
-
+                    {% endif %}
+                         {% endif %}
                     </div>
                 </div>
             </main>

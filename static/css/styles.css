@@ -631,9 +631,14 @@ body {
     padding: 10px 0px;
 
 }
-
+.QR_block img{
+    background-color:#FAF0E6;
+    opacity:50%;
+    border-radius:10px;
+}
 .QR {
     width: 9.375rem;
+
 }
 
 /* account_settings */
