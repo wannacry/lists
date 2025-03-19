@@ -47,6 +47,14 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.mfa',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.twitter',
+
+    # for https self_ssl
+    'django_extensions',
+
 ]
 
 MIDDLEWARE = [
@@ -158,6 +166,47 @@ ACCOUNT_CHANGE_EMAIL = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_CONFIRMATION_AUTO_LOGIN = True
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+
+SOCIALACCOUNT_LOGIN_ON_GET = True
+SOCIALACCOUNT_EMAIL_AUTHENTICATION = True
+SOCIALACCOUNT_EMAIL_AUTHENTICATION_AUTO_CONNECT = True
+SOCIALACCOUNT_EMAIL_VERIFICATION = 'none'
+
+
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "APPS": [
+            {
+                "client_id": os.getenv('GOOGLE_CLIENT_ID'),
+                "secret": os.getenv('GOOGLE_SECRET'),
+                "key": "",
+            },
+        ],
+    },
+    "facebook": {
+            "APPS": [
+                {
+                    "client_id": os.getenv('FACEBOOK_CLIENT_ID'),
+                    "secret": os.getenv('FACEBOOK_SECRET'),
+                    "key": "",
+
+                },
+
+            ],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+    },
+        "twitter": {
+            "APPS": [
+                {
+                    "client_id": os.getenv('TWITTER_CLIENT_ID'),
+                    "secret": os.getenv('TWITTER_SECRET'),
+                    "key": "",
+
+                },
+
+            ],
+        },
+}
 
 MFA_SUPPORTED_TYPES = "totp"
 

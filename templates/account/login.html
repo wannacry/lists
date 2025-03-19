@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% load socialaccount %}
 {% load allauth account %}
 <html lang="en">
 
@@ -22,9 +23,9 @@
             <div class="social_media_login">
                 <h2 class="social_media_title">Social media login</h2>
                 <div class="social_media_links">
-                    <div class="social_media_div"><a href="#" class="social_media_link icon-google"></a></div>
-                    <div class="social_media_div"><a href="#" class="social_media_link icon-facebook"></a></div>
-                    <div class="social_media_div"><a href="#" class="social_media_link icon-twitter"></a></div>
+                    <div class="social_media_div"><a href="{% provider_login_url 'google' %}" class="social_media_link icon-google"></a></div>
+                    <div class="social_media_div"><a href="{% provider_login_url 'facebook' %}" class="social_media_link icon-facebook"></a></div>
+                    <div class="social_media_div"><a href="{% provider_login_url 'twitter' %}" class="social_media_link icon-twitter"></a></div>
                 </div>
             </div>
             <div class="divider"></div>
