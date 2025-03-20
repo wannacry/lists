@@ -28,7 +28,7 @@
                     <div class="header_account">
                         <div class="header_account_detail">
                             <a href="{% url 'profileapp:profile' %}" class="header_account_detail_link">
-                                <img src="{% static 'images/profile_img.png' %}" alt="Profile img" class="header_account_img">
+                                <img src="{{profile.profile_img.url}}" alt="Avatar" class="header_account_img">
                             </a>
                         </div>
                         <div class="header_account_menu icon-menu3">
