@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+
+from django.conf.global_settings import ALLOWED_HOSTS
 from dotenv import load_dotenv
 import dj_database_url
 load_dotenv()
@@ -27,9 +29,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 DATABASE_URL = os.getenv("DATABASE_URL")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG')
-# ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS')
-ALLOWED_HOSTS = []
+DEBUG = os.getenv('DEBUG','False') == True
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS",'').split(',')
 
 # Application definition
 

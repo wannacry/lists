@@ -878,3 +878,13 @@ body {
     text-align:center;
      padding: 12px 20px;
 }
+
+/* 404 */
+.container_404{
+    margin:auto auto;
+}
+.link_404{
+    font-size:16rem;
+    font-family:AlexBrush;
+    color: #657BA8;
+}
