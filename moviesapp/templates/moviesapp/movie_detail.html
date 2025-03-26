@@ -2,7 +2,7 @@
 <html lang="en">
 {% load static %}
 {% load allauth i18n %}
-
+{% load money_filter %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -58,30 +58,25 @@
         </header>
         <div class="main_container1200">
             <main class="main">
+
                 <div class="movie_detail_container">
                     <div class="movie_detail_poster">
-                        <img src="{% static 'profile_img/mv_poster.png' %}" alt="poster"
+                        <img src="{% static '' %}" alt="Poster img"
                             class="movie_detail_poster_img">
                     </div>
                     <div class="movie_detail_info_container">
                         <div class="movie_detail_info">
-                            <p>Name:<span>The Shawshank Redemption</span></p>
-                            <p>Duration:<span>2h 32m</span></p>
-                            <p>Release date:<span>Sep 23, 1994</span></p>
-                            <p>Genres:<span>Drama, Crime</span></p>
-                            <p>IMDB rating:<span>9.5/10</span></p>
-                            <p>Synopsys:<span>Imprisoned in the 1940s for the double murder of his wife and her lover,
-                                    upstanding banker Andy Dufresne begins a new life at the Shawshank prison, where he
-                                    puts
-                                    his accounting skills to work for an amoral warden. During his long stretch in
-                                    prison,
-                                    Dufresne comes to be admired by the other inmates -- including an older prisoner
-                                    named
-                                    Red -- for his integrity and unquenchable sense of hope.</span></p>
+                            <p>Name:<span>{{movie.title}}</span></p>
+                            <p>Duration:<span>{{movie.runtime}}m</span></p>
+                            <p>Release date:<span>{{movie.release_date}}</span></p>
+                            <p>Genres:{%for name in genres%}<span>{{name}}{%if not forloop.last%},{%endif%}</span>{%endfor%}</p>
+                            <p>TMDB rating:<span>{{movie.vote_average|floatformat:1}}/10</span></p>
+                            <p>IMDB rating:<span>{{movie.imdb_rating}}/10</span></p>
+                            <p>Synopsys:<span>{{movie.overview}}</span></p>
                         </div>
                         <div class="budget_revenue">
-                            <p>Budget:<span>$63 000 000</span></p>
-                            <p>Revenue:<span>$100 853 753</span></p>
+                            <p>Budget:<span>${{movie.budget|money_filter}}</span></p>
+                            <p>Revenue:<span>${{movie.revenue|money_filter}}</span></p>
                         </div>
                     </div>
 
@@ -96,7 +91,7 @@
                             <button type="submit" class="add_list_item">Postponed</button>
                         </div>
                     </div>
-                    <button type="submit" class="rating_button">Rate film</button>
+<!--                    <button type="submit" class="rating_button">Rate film</button>-->
                 </div>
             </main>
         </div>

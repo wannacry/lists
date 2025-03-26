@@ -129,35 +129,40 @@
                         </div>
                     </div>
                     <div class="catalog_items">
+                        {% for movie in catalog %}
                         <div class="catalog_item">
-                            <a href="" class="catalog_item_link">
+                            <a href="{% url 'moviesapp:movie_detail' movie.id %}" class="catalog_item_link">
                                 <div class="catalog_item_poster">
-                                    <img src="{% static 'profile_img/mv_poster.png' %}" alt="Poster img"
+                                    <img src="{% static '' %}" alt="Poster img"
                                         class="catalog_poster">
                                 </div>
-                                <span class="catalog_item_name">The Shawshank Redemption</span>
+                                <span class="catalog_item_name">{{movie.title}}</span>
                                 <div class="catalog_item_info">
-                                    <span class="catalog_item_release_date">Sep 23, 1994</span>
-                                    <span class="catalog_item_imdb_rating">9.5/10 IMDB</span>
+                                    <span class="catalog_item_release_date">{{movie.release_date}}</span>
+                                    {%if movie.imdb_rating %}
+                                    <span class="catalog_item_imdb_rating">{{movie.imdb_rating|floatformat:1}}/10 IMDB</span>
+                                    {%else%}
+                                    <span class="catalog_item_imdb_rating">{{movie.vote_average|floatformat:1}}/10 TMDB</span>
+                                    {%endif%}
                                 </div>
                             </a>
                         </div>
-
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="pagination_container">
                     <div class="pagination_items">
-                        <a href="#" class="first_link">first</a>
-                        <a href="#" class="previous_link">previous</a>
+                        <a href="{% url 'moviesapp:catalog' %}" class="first_link">first</a>
+                        <a href="{% url 'moviesapp:catalog' current_page|add:-1 %}" class="previous_link">previous</a>
         
                         <div class="pagination_page_number">
-                            <span>1</span>
+                            <span>{{current_page}}</span>
                             <span>of</span>
-                            <span>471</span>
+                            <span>{{last_page}}</span>
                         </div>
         
-                        <a href="#" class="next_link">next</a>
-                        <a href="#" class="last_link">last</a>
+                        <a href="{% url 'moviesapp:catalog' current_page|add:1 %}" class="next_link">next</a>
+                        <a href="{% url 'moviesapp:catalog' last_page %}" class="last_link">last</a>
                     </div>
                 </div>
         

@@ -33,20 +33,20 @@ function cancel_btn_overlayF(){
     open_overlay.classList.remove('visible');
 }
 // overlay
-let rating_open_overlay_link = document.getElementsByClassName('rating_button')[0]
-let open_overlay2 = document.getElementsByClassName('open_overlay')[1]
-let overlay2 = document.getElementsByClassName('overlay')[1]
-let cancel_overlay2 = document.getElementsByClassName('cancel_overlay')[1]
-rating_open_overlay_link.addEventListener('click',rating_open_overlay_linkF)
-function rating_open_overlay_linkF(){
-    open_overlay2.classList.toggle('visible');
-}
-open_overlay2.addEventListener('click', cancel_overlayF2)
-function cancel_overlayF2(event) {
-    if (!rating_open_overlay_link.contains(event.target) && !overlay2.contains(event.target)) {
-        open_overlay2.classList.remove('visible');
-    }
-};
+// let rating_open_overlay_link = document.getElementsByClassName('rating_button')[0]
+// let open_overlay2 = document.getElementsByClassName('open_overlay')[1]
+// let overlay2 = document.getElementsByClassName('overlay')[1]
+// let cancel_overlay2 = document.getElementsByClassName('cancel_overlay')[1]
+// rating_open_overlay_link.addEventListener('click',rating_open_overlay_linkF)
+// function rating_open_overlay_linkF(){
+//     open_overlay2.classList.toggle('visible');
+// }
+// open_overlay2.addEventListener('click', cancel_overlayF2)
+// function cancel_overlayF2(event) {
+//     if (!rating_open_overlay_link.contains(event.target) && !overlay2.contains(event.target)) {
+//         open_overlay2.classList.remove('visible');
+//     }
+// };
 
 // add to list menu
 document.getElementsByClassName('add_list_button')[0].addEventListener('click',f);

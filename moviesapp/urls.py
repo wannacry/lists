@@ -7,5 +7,6 @@ app_name = 'moviesapp'
 
 urlpatterns = [
     path('catalog/', views.catalog, name='catalog'),
-    path('movieid/1', views.movie_detail, name='movieid'),
+    path('catalog/<int:page_num>', views.catalog, name='catalog'),
+    path('movie_detail/<int:movie_id>', views.movie_detail, name='movie_detail'),
 ]
