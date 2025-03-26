@@ -2,11 +2,12 @@
 <html lang="en">
 {% load static %}
 {% load allauth i18n %}
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lists</title>
-    <link rel="stylesheet"  href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
 </head>
 
@@ -23,7 +24,12 @@
                             <span class="header_logotype_text">Lists</span>
                         </a>
                     </div>
-
+                    <nav class="navigation">
+                        <ul class="navigation_manu">
+                            <li class="navigation_item"><a href="{% url 'moviesapp:catalog' %}"
+                                    class="navigation_link">Catalog</a></li>
+                        </ul>
+                    </nav>
                     {% if user.is_authenticated %}
                     <div class="header_account">
                         <div class="header_account_detail">
@@ -34,8 +40,10 @@
                         <div class="header_account_menu icon-menu3">
                             <div class="dropdown_menu">
                                 <ul class="dropdown_items">
-                                    <li class="dorpdown_item"><a href="{% url 'profileapp:profile' %}" class="dropdown_item_link ">Account</a></li>
-                                    <li class="dorpdown_item"><a href="{% url 'profileapp:profile_settings' %}" class="dropdown_item_link">Settings</a></li>
+                                    <li class="dorpdown_item"><a href="{% url 'profileapp:profile' %}"
+                                            class="dropdown_item_link ">Account</a></li>
+                                    <li class="dorpdown_item"><a href="{% url 'profileapp:profile_settings' %}"
+                                            class="dropdown_item_link">Settings</a></li>
                                     <li class="dorpdown_item"><a href="#" class="dropdown_item_link">Logout</a></li>
                                 </ul>
                             </div>
@@ -65,8 +73,8 @@
             <div class="overlay_btns">
                 <form action="{% url 'account_logout'%}" method="post" class="overlay_form">
                     {% csrf_token %}
-                <button type="submit" class="logout_button">Logout</button>
-                <a href="" class="cancel_overlay">Cancel</a>
+                    <button type="submit" class="logout_button">Logout</button>
+                    <a href="" class="cancel_overlay">Cancel</a>
                 </form>
             </div>
         </div>

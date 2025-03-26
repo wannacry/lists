@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load allauth i18n %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalog</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        <header class="header">
+            <div class="header_container1200">
+                <div class="header_content">
+                    <div class="header_logotype">
+                        <a href="{% url 'coreapp:core'%}" class="header_logotype_link">
+                            <span class="header_logotype_text">Lists</span>
+                        </a>
+                    </div>
+                    <nav class="navigation">
+                        <ul class="navigation_manu">
+                            <li class="navigation_item"><a href="{% url 'moviesapp:catalog' %}"
+                                    class="navigation_link">Catalog</a></li>
+                        </ul>
+                    </nav>
+                    {% if user.is_authenticated %}
+                    <div class="header_account">
+                        <div class="header_account_detail">
+                            <a href="{% url 'profileapp:profile' %}" class="header_account_detail_link">
+                                <img src="{{profile.profile_img.url}}" alt="Avatar" class="header_account_img">
+                            </a>
+                        </div>
+                        <div class="header_account_menu icon-menu3">
+                            <div class="dropdown_menu">
+                                <ul class="dropdown_items">
+                                    <li class="dorpdown_item"><a href="{% url 'profileapp:profile' %}"
+                                            class="dropdown_item_link ">Account</a></li>
+                                    <li class="dorpdown_item"><a href="{% url 'profileapp:profile_settings' %}"
+                                            class="dropdown_item_link">Settings</a></li>
+                                    <li class="dorpdown_item"><a href="#" class="dropdown_item_link">Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="header_login">
+                        <a href="{% url 'account_login' %}" class="header_login_button">login | registration</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </header>
+        <div class="main_container1200">
+            <main class="main">
+                <div class="catalog_filters_container">
+                    <div class="catalog_container">
+                        <h2 class="catalog_title">Catalog</h2>
+                        <div class="filters_search_container">
+                            <div class="filter_container">
+                                <div class="filter_items">
+                                    <div class="genres_container">
+                                        <div class="genres_title">Genres</div>
+                                        <div class="genres">
+                                            <input type="submit" value="Action">
+                                            <input type="submit" value="Action">
+                                            <input type="submit" value="Action">
+                                            <input type="submit" value="Action">
+                                            <input type="submit" value="Action">
+                                            <input type="submit" value="Action">
+                                            <input type="submit" value="Action">
+                                            <input type="submit" value="Action">
+                                            <input type="submit" value="Action">
+                                            <input type="submit" value="Action">
+                                            <input type="submit" value="Action">
+                                            <input type="submit" value="Action">
+                                            <input type="submit" value="Action">
+                                            <input type="submit" value="Action">
+                                            <input type="submit" value="Action">
+                                            <input type="submit" value="Action">
+                                            <input type="submit" value="Action">
+                                            <input type="submit" value="Action">
+                                            <input type="submit" value="Action">
+                                        </div>
+                                    </div>
+                                    <div class="release_date_filter">
+                                        <div class="release_date_filter_title">Release</div>
+                                        <input type="date">
+                                        <span>to</span>
+                                        <input type="date">
+                                    </div>
+                                </div>
+                                <div class="sorting">
+                                    <div class="sorting_menu">
+                                        <ul class="sorting_items">
+                                            <li class="sorting_item"><input type="button" class="sorting_link"
+                                                    value="Popularity"></li>
+                                            <li class="sorting_item"><input type="button" value="Rating"
+                                                    class="sorting_link"></li>
+                                            <li class="sorting_item"><input type="button" value="Release date"
+                                                    class="sorting_link"></li>
+                                        </ul>
+                                    </div>
+                                    <div class="sorting_divider"></div>
+                                    <div class="sort_order">
+                                        <div class="asc_order">
+                                            <input type="radio" name="my-input" id="asc" value="asc">
+
+
+                                            <label for="yes">ASC</label>
+                                        </div>
+                                        <div class="desc_order">
+                                            <input type="radio" name="my-input" id="desc" value="desc">
+                                            <label for="yes">DESC</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="searching_items">
+                            <input type="text" class="search" placeholder="Search...">
+                        </div>
+                    </div>
+                    <div class="catalog_items">
+                        <div class="catalog_item">
+                            <a href="" class="catalog_item_link">
+                                <div class="catalog_item_poster">
+                                    <img src="{% static 'profile_img/mv_poster.png' %}" alt="Poster img"
+                                        class="catalog_poster">
+                                </div>
+                                <span class="catalog_item_name">The Shawshank Redemption</span>
+                                <div class="catalog_item_info">
+                                    <span class="catalog_item_release_date">Sep 23, 1994</span>
+                                    <span class="catalog_item_imdb_rating">9.5/10 IMDB</span>
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="pagination_container">
+                    <div class="pagination_items">
+                        <a href="#" class="first_link">first</a>
+                        <a href="#" class="previous_link">previous</a>
+        
+                        <div class="pagination_page_number">
+                            <span>1</span>
+                            <span>of</span>
+                            <span>471</span>
+                        </div>
+        
+                        <a href="#" class="next_link">next</a>
+                        <a href="#" class="last_link">last</a>
+                    </div>
+                </div>
+        
+                </main>
+        </div>
+        
+    </div>
+    <footer class="footer">
+
+    </footer>
+    </div>
+
+    </div>
+
+    <script src="{%static 'scripts/scripts.js' %}"></script>
+</body>
+
+</html>

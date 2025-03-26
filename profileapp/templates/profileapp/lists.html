@@ -2,11 +2,12 @@
 <html lang="en">
 {% load static %}
 {% load allauth i18n %}
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
-    <link rel="stylesheet"  href="{% static 'css/styles.css' %}">
+    <title>List</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
 </head>
 
@@ -35,11 +36,19 @@
                                 <img src="{{profile.profile_img.url}}" alt="Avatar" class="header_account_img">
                             </a>
                         </div>
+                        <nav class="navigation">
+                            <ul class="navigation_manu">
+                                <li class="navigation_item"><a href="{% url 'moviesapp:catalog' %}"
+                                        class="navigation_link">Catalog</a></li>
+                            </ul>
+                        </nav>
                         <div class="header_account_menu icon-menu3">
                             <div class="dropdown_menu">
                                 <ul class="dropdown_items">
-                                    <li class="dorpdown_item"><a href="{% url 'profileapp:profile' %}" class="dropdown_item_link ">Account</a></li>
-                                    <li class="dorpdown_item"><a href="{% url 'profileapp:profile_settings' %}" class="dropdown_item_link">Settings</a></li>
+                                    <li class="dorpdown_item"><a href="{% url 'profileapp:profile' %}"
+                                            class="dropdown_item_link ">Account</a></li>
+                                    <li class="dorpdown_item"><a href="{% url 'profileapp:profile_settings' %}"
+                                            class="dropdown_item_link">Settings</a></li>
                                     <li class="dorpdown_item"><a href="#" class="dropdown_item_link">Logout</a></li>
                                 </ul>
                             </div>
@@ -65,6 +74,33 @@
                     <a href="#" class="panel_item_logout">Logout</a>
                 </div>
 
+                <div class="list_container">
+                    <div class="lists_menu">
+                        <a href="" class="lists_link">All</a>
+                        <a href="" class="lists_link">Planned</a>
+                        <a href="" class="lists_link">Viewed</a>
+                        <a href="" class="lists_link">Abandoned</a>
+                        <a href="" class="lists_link">Postponed</a>
+                    </div>
+                    <div class="list_adding_items">
+                        <a href="#" class="link_on_list_item">
+                            <div class="list_adding_item">
+                                <div class="list_adding_item_poster">
+                                    <img src="/static/profile_img/mv_poster.png" alt="Poster" class="poster_img">
+                                </div>
+                                <div class="list_adding_item_info">
+                                    <p>№1<span></span></p>
+                                    <p>Name:<span>The Shawshank Redemption</span></p>
+                                    <p>Duration:<span>2h 32m</span></p>
+                                    <p>Release date:<span>Sep 23, 1994</span></p>
+                                    <p>Viewed date:<span>Sep 13, 2010</span></p>
+                                    <p>IMDB rating:<span>9.5/10</span></p>
+                                    <p>Seelf rating:<span>9/10</span></p>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
                 </div>
             </main>
         </div>
@@ -82,8 +118,8 @@
             <div class="overlay_btns">
                 <form action="{% url 'account_logout'%}" method="post" class="overlay_form">
                     {% csrf_token %}
-                <button type="submit" class="logout_button">Logout</button>
-                <a href="" class="cancel_overlay">Cancel</a>
+                    <button type="submit" class="logout_button">Logout</button>
+                    <a href="" class="cancel_overlay">Cancel</a>
                 </form>
             </div>
         </div>
@@ -92,4 +128,5 @@
 
     <script src="{%static 'scripts/scripts.js' %}"></script>
 </body>
+
 </html>

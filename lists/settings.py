@@ -29,8 +29,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 DATABASE_URL = os.getenv("DATABASE_URL")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG','False') == True
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS",'').split(',')
+DEBUG = True
+ALLOWED_HOSTS =[]
+
+#tmdb api
+TMDB_API_KEY = os.getenv("TMDB_API_KEY")
+
+# DEBUG = os.getenv('DEBUG','False') == True
+# ALLOWED_HOSTS = [os.getenv("ALLOWED_HOSTS",'').split(',')]
 
 # Application definition
 
@@ -44,6 +50,7 @@ INSTALLED_APPS = [
 
     'coreapp.apps.CoreappConfig',
     'profileapp.apps.ProfileappConfig',
+    'moviesapp.apps.MoviesappConfig',
 
     'allauth',
     'allauth.account',

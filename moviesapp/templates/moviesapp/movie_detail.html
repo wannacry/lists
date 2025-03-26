@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load allauth i18n %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalog</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        <header class="header">
+            <div class="header_container1200">
+                <div class="header_content">
+                    <div class="header_logotype">
+                        <a href="{% url 'coreapp:core'%}" class="header_logotype_link">
+                            <span class="header_logotype_text">Lists</span>
+                        </a>
+                    </div>
+                    <nav class="navigation">
+                        <ul class="navigation_manu">
+                            <li class="navigation_item"><a href="{% url 'moviesapp:catalog' %}"
+                                    class="navigation_link">Catalog</a></li>
+                        </ul>
+                    </nav>
+                    {% if user.is_authenticated %}
+                    <div class="header_account">
+                        <div class="header_account_detail">
+                            <a href="{% url 'profileapp:profile' %}" class="header_account_detail_link">
+                                <img src="{{profile.profile_img.url}}" alt="Avatar" class="header_account_img">
+                            </a>
+                        </div>
+                        <div class="header_account_menu icon-menu3">
+                            <div class="dropdown_menu">
+                                <ul class="dropdown_items">
+                                    <li class="dorpdown_item"><a href="{% url 'profileapp:profile' %}"
+                                            class="dropdown_item_link ">Account</a></li>
+                                    <li class="dorpdown_item"><a href="{% url 'profileapp:profile_settings' %}"
+                                            class="dropdown_item_link">Settings</a></li>
+                                    <li class="dorpdown_item"><a href="#" class="dropdown_item_link">Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="header_login">
+                        <a href="{% url 'account_login' %}" class="header_login_button">login | registration</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </header>
+        <div class="main_container1200">
+            <main class="main">
+                <div class="movie_detail_container">
+                    <div class="movie_detail_poster">
+                        <img src="{% static 'profile_img/mv_poster.png' %}" alt="poster"
+                            class="movie_detail_poster_img">
+                    </div>
+                    <div class="movie_detail_info_container">
+                        <div class="movie_detail_info">
+                            <p>Name:<span>The Shawshank Redemption</span></p>
+                            <p>Duration:<span>2h 32m</span></p>
+                            <p>Release date:<span>Sep 23, 1994</span></p>
+                            <p>Genres:<span>Drama, Crime</span></p>
+                            <p>IMDB rating:<span>9.5/10</span></p>
+                            <p>Synopsys:<span>Imprisoned in the 1940s for the double murder of his wife and her lover,
+                                    upstanding banker Andy Dufresne begins a new life at the Shawshank prison, where he
+                                    puts
+                                    his accounting skills to work for an amoral warden. During his long stretch in
+                                    prison,
+                                    Dufresne comes to be admired by the other inmates -- including an older prisoner
+                                    named
+                                    Red -- for his integrity and unquenchable sense of hope.</span></p>
+                        </div>
+                        <div class="budget_revenue">
+                            <p>Budget:<span>$63 000 000</span></p>
+                            <p>Revenue:<span>$100 853 753</span></p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="detail_actions">
+                    <div class="add_to_list">
+                        <button type="submit" class="add_list_button">+ Add to list</button>
+                        <div class="hiden_add_menu">
+                            <button type="submit" class="add_list_item">Planned</button>
+                            <button type="submit" class="add_list_item">Viewed</button>
+                            <button type="submit" class="add_list_item">Abandoned</button>
+                            <button type="submit" class="add_list_item">Postponed</button>
+                        </div>
+                    </div>
+                    <button type="submit" class="rating_button">Rate film</button>
+                </div>
+            </main>
+        </div>
+
+    </div>
+    <footer class="footer">
+
+    </footer>
+    </div>
+    <div class="open_overlay">
+        <div class="overlay">
+            <h2 class="overlay_title">Are you shure?</h2>
+            <p class="overlay_explanation">You will no longer be logged in on the current browser!</p>
+            <div class="overlay_btns">
+                <form action="{% url 'account_logout'%}" method="post" class="overlay_form">
+                    {% csrf_token %}
+                    <button type="submit" class="logout_button">Logout</button>
+                    <a href="" class="cancel_overlay">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="open_overlay">
+        <div class="overlay">
+            <h2 class="overlay_title rating_title">Rating</h2>
+            <div class="overlay_btns">
+                <form action="" method="post" class="overlay_form">
+                    {% csrf_token %}
+                    <button type="submit" class="rate_button">Rate</button>
+                    <a href="" class="cancel_overlay">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="{%static 'scripts/add_list.js' %}"></script>
+</body>
+
+</html>

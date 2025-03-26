@@ -23,7 +23,12 @@
                             <span class="header_logotype_text">Lists</span>
                         </a>
                     </div>
-
+                    <nav class="navigation">
+                        <ul class="navigation_manu">
+                            <li class="navigation_item"><a href="{% url 'moviesapp:catalog' %}"
+                                    class="navigation_link">Catalog</a></li>
+                        </ul>
+                    </nav>
                    {% if user.is_authenticated %}
                     <div class="header_account">
                         <div class="header_account_detail">

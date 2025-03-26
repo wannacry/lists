@@ -19,3 +19,9 @@ def profile_settings(request):
         'profile': Profile.objects.filter(user=request.user).first(),
     }
     return render(request,'profileapp/profile_settings.html',context)
+
+def list(request):
+    context = {
+        'profile': Profile.objects.filter(user=request.user).first()
+    }
+    return render(request,'profileapp/lists.html',context)

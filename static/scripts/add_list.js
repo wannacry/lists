@@ -32,50 +32,21 @@ cancel_overlay.addEventListener('click', cancel_btn_overlayF)
 function cancel_btn_overlayF(){
     open_overlay.classList.remove('visible');
 }
-
-// settings_overlay
-let settings_open_overlay_link = document.getElementsByClassName('panel_item_logout')[0]
-settings_open_overlay_link.addEventListener('click',settings_open_overlay_link_visible)
-function settings_open_overlay_link_visible(){
-    open_overlay.classList.toggle('visible');
-}
-
-// sex_options
-let sex_options_border = document.getElementsByClassName('option_input_container')[0]
-let sex_options = document.getElementsByClassName('option_input')[0]
-let sex_options_container= document.getElementsByClassName('sex_options_container')[0]
-sex_options.addEventListener('click',open_sex_options)
-function open_sex_options(){
-    sex_options_border.classList.toggle('new_border');
-    sex_options_container.classList.toggle('visible');
-}
-let none_value = document.getElementsByClassName('sex_option_item')[0]
-none_value.addEventListener('click',none_valueF)
-function none_valueF(){
-    sex_options_border.classList.remove('new_border');
-    sex_options_container.classList.remove('visible');
-    sex_options.value = 'Not specified'
-}
-let get_male_value = document.getElementsByClassName('sex_option_item')[1]
-get_male_value.addEventListener('click',get_male_valueF)
-function get_male_valueF(){
-    sex_options_border.classList.remove('new_border');
-    sex_options_container.classList.remove('visible');
-    sex_options.value = 'Male'
-}
-let get_female_value = document.getElementsByClassName('sex_option_item')[2]
-get_female_value.addEventListener('click',get_female_valueF)
-function get_female_valueF(){
-    sex_options_border.classList.remove('new_border');
-    sex_options_container.classList.remove('visible');
-    sex_options.value = 'Female'
-}
 // overlay
 let rating_open_overlay_link = document.getElementsByClassName('rating_button')[0]
+let open_overlay2 = document.getElementsByClassName('open_overlay')[1]
+let overlay2 = document.getElementsByClassName('overlay')[1]
+let cancel_overlay2 = document.getElementsByClassName('cancel_overlay')[1]
 rating_open_overlay_link.addEventListener('click',rating_open_overlay_linkF)
 function rating_open_overlay_linkF(){
-    open_overlay.classList.toggle('visible');
+    open_overlay2.classList.toggle('visible');
 }
+open_overlay2.addEventListener('click', cancel_overlayF2)
+function cancel_overlayF2(event) {
+    if (!rating_open_overlay_link.contains(event.target) && !overlay2.contains(event.target)) {
+        open_overlay2.classList.remove('visible');
+    }
+};
 
 // add to list menu
 document.getElementsByClassName('add_list_button')[0].addEventListener('click',f);
