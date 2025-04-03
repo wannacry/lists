@@ -66,32 +66,17 @@
                                     <div class="genres_container">
                                         <div class="genres_title">Genres</div>
                                         <div class="genres">
-                                            <input type="submit" value="Action">
-                                            <input type="submit" value="Action">
-                                            <input type="submit" value="Action">
-                                            <input type="submit" value="Action">
-                                            <input type="submit" value="Action">
-                                            <input type="submit" value="Action">
-                                            <input type="submit" value="Action">
-                                            <input type="submit" value="Action">
-                                            <input type="submit" value="Action">
-                                            <input type="submit" value="Action">
-                                            <input type="submit" value="Action">
-                                            <input type="submit" value="Action">
-                                            <input type="submit" value="Action">
-                                            <input type="submit" value="Action">
-                                            <input type="submit" value="Action">
-                                            <input type="submit" value="Action">
-                                            <input type="submit" value="Action">
-                                            <input type="submit" value="Action">
-                                            <input type="submit" value="Action">
+                                            {%for i in genres %}
+                                            <button class="genre_link" type="submit" value="{{i.id}}" onclick="genres_filter('{{i.id}}')">{{i.name}}</button>
+                                            {% endfor%}
                                         </div>
                                     </div>
                                     <div class="release_date_filter">
                                         <div class="release_date_filter_title">Release</div>
-                                        <input type="date">
+                                        <input class="start_date" type="date">
                                         <span>to</span>
-                                        <input type="date">
+                                        <input class="end_date" type="date">
+                                        <span class="release_filter" onclick="release_date_filter()">Release filter</span>
                                     </div>
                                 </div>
                                 <div class="sorting">
@@ -175,7 +160,7 @@
     </div>
 
     <script src="{%static 'scripts/scripts.js' %}"></script>
-    <script src="{%static 'scripts/ajax_sorting.js' %}"></script>
+    <script src="{%static 'scripts/ajax_sorting.js' %}" ></script>
 </body>
 
 </html>

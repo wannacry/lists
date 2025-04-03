@@ -35,14 +35,15 @@ def save_profile(sender, instance, **kwargs):
     if hasattr(instance,'profile'):
         instance.profile.save()
 
-CHOISES = [
-    ('planned','Planned'),
-    ('viewed','Viewed'),
-    ('abandoned','Abandoned'),
-    ('postponed','Postponed'),
-]
+
 
 class MoviesList(models.Model):
+    CHOISES = [
+        ('planned', 'Planned'),
+        ('viewed', 'Viewed'),
+        ('abandoned', 'Abandoned'),
+        ('postponed', 'Postponed'),
+    ]
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     film_id = models.ForeignKey(Movie, on_delete=models.CASCADE)
     list_status = models.CharField(max_length=12, choices=CHOISES,default='not_defined')

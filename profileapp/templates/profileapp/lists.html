@@ -71,31 +71,15 @@
 
                 <div class="list_container">
                     <div class="lists_menu">
-                        <a href="" class="lists_link">All</a>
-                        <a href="" class="lists_link">Planned</a>
-                        <a href="" class="lists_link">Viewed</a>
-                        <a href="" class="lists_link">Abandoned</a>
-                        <a href="" class="lists_link">Postponed</a>
+
+                        <span class="lists_link">All</span>
+                        <span class="lists_link">Planned</span>
+                        <span class="lists_link">Viewed</span>
+                        <span class="lists_link">Abandoned</span>
+                        <span class="lists_link">Postponed</span>
                     </div>
                     <div class="list_adding_items">
-                        {%for movie in movies_list%}
-                        <a href="{% url 'moviesapp:movie_detail' movie.film_id.id %}" class="link_on_list_item">
-                            <div class="list_adding_item">
-                                <div class="list_adding_item_poster">
-                                    <img src="" alt="Poster" class="poster_img">
-                                </div>
-                                <div class="list_adding_item_info">
-                                    <p>№{{forloop.counter}}<span></span></p>
-                                    <p>Name:<span>{{movie.film_id.title}}</span></p>
-                                    <p>Duration:<span>{{movie.film_id.runtime}}m</span></p>
-                                    <p>Release date:<span>{{movie.film_id.release_date}}</span></p>
-                                    <p>Viewed date:<span>{{movie.date_added}}</span></p>
-                                    <p>IMDB rating:<span>{{movie.film_id.imdb_rating}}/10</span></p>
-                                    <p>TMDB rating:<span>{{movie.film_id.vote_average}}/10</span></p>
-                                </div>
-                            </div>
-                        </a>
-                    {%endfor%}
+
                     </div>
                 </div>
             </main>
@@ -123,6 +107,7 @@
 
 
     <script src="{%static 'scripts/scripts.js' %}"></script>
+    <script src="{%static 'scripts/lists.js' %}"></script>
 </body>
 
 </html>

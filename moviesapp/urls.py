@@ -14,4 +14,5 @@ urlpatterns = [
 
     path('movie_detail/<int:movie_id>', views.movie_detail, name='movie_detail'),
     path('add_to_list/', views.add_to_list, name='add_to_list'),
+
 ]
