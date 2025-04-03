@@ -2,6 +2,8 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+
+from moviesapp.models import Movie
 from .profile_img_generation import profile_img_generator
 # Create your models here.
 
@@ -32,3 +34,21 @@ def create_profile(sender,instance, created, **kwargs):
 def save_profile(sender, instance, **kwargs):
     if hasattr(instance,'profile'):
         instance.profile.save()
+
+CHOISES = [
+    ('planned','Planned'),
+    ('viewed','Viewed'),
+    ('abandoned','Abandoned'),
+    ('postponed','Postponed'),
+]
+
+class MoviesList(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    film_id = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    list_status = models.CharField(max_length=12, choices=CHOISES,default='not_defined')
+    date_added = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.user}+{self.film_id}+{self.list_status}'
+
+

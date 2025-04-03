@@ -32,7 +32,6 @@ class Movie(models.Model):
     def __str__(self):
         return self.title
 
-
 class Country(models.Model):
     iso_3166_1 = models.CharField(max_length=2, primary_key=True)
     english_name = models.CharField(max_length=100)

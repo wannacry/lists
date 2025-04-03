@@ -1100,9 +1100,6 @@ input[type="date"] {
     padding: 5px 10px;
     border-radius: 5px;
 }
-.sorting_item:first-child {
-    background-color: #423D39;
-}
 .sorting_link {
     background-color: inherit;
     color: rgba(250, 240, 230, 0.5);
@@ -1129,8 +1126,12 @@ input[type="date"] {
 input[type=radio]{
     cursor: pointer;
 }
+
+.sorting_checked_item{
+background-color: #423D39;
+}
+
 .asc_order{
-    background-color: #423D39;
     padding: 5px 10px;
     border-radius: 5px;
 }
@@ -1151,6 +1152,9 @@ input[type=radio]{
     gap: 20px;
     justify-content: center;
     padding: 21px 0px;
+}
+.pagination_items>span{
+    cursor:pointer;
 }
 .first_link {
 }

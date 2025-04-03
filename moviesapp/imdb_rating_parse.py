@@ -23,11 +23,11 @@ for movie in movies:
                 movie.imdb_rating = movie_rating
                 movie.save()
             except ValueError:
-                print('problem whith type of value')
+                print(f'problem whith type of value {movie.imdb_id}')
             except Exception as e:
-                print(f'Unexpected error {e}')
+                print(f'Unexpected error {e} for {movie.imdb_id}')
         else:
-            print('html object not found')
+            print(f'html object not found in id:{movie.imdb_id}')
 
     else:
         print(f'Error request to imdb stage {response.status_code}')

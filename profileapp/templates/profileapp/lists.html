@@ -36,12 +36,7 @@
                                 <img src="{{profile.profile_img.url}}" alt="Avatar" class="header_account_img">
                             </a>
                         </div>
-                        <nav class="navigation">
-                            <ul class="navigation_manu">
-                                <li class="navigation_item"><a href="{% url 'moviesapp:catalog' %}"
-                                        class="navigation_link">Catalog</a></li>
-                            </ul>
-                        </nav>
+
                         <div class="header_account_menu icon-menu3">
                             <div class="dropdown_menu">
                                 <ul class="dropdown_items">
@@ -83,23 +78,24 @@
                         <a href="" class="lists_link">Postponed</a>
                     </div>
                     <div class="list_adding_items">
-                        <a href="#" class="link_on_list_item">
+                        {%for movie in movies_list%}
+                        <a href="{% url 'moviesapp:movie_detail' movie.film_id.id %}" class="link_on_list_item">
                             <div class="list_adding_item">
                                 <div class="list_adding_item_poster">
-                                    <img src="/static/profile_img/mv_poster.png" alt="Poster" class="poster_img">
+                                    <img src="" alt="Poster" class="poster_img">
                                 </div>
                                 <div class="list_adding_item_info">
-                                    <p>№1<span></span></p>
-                                    <p>Name:<span>The Shawshank Redemption</span></p>
-                                    <p>Duration:<span>2h 32m</span></p>
-                                    <p>Release date:<span>Sep 23, 1994</span></p>
-                                    <p>Viewed date:<span>Sep 13, 2010</span></p>
-                                    <p>IMDB rating:<span>9.5/10</span></p>
-                                    <p>Seelf rating:<span>9/10</span></p>
+                                    <p>№{{forloop.counter}}<span></span></p>
+                                    <p>Name:<span>{{movie.film_id.title}}</span></p>
+                                    <p>Duration:<span>{{movie.film_id.runtime}}m</span></p>
+                                    <p>Release date:<span>{{movie.film_id.release_date}}</span></p>
+                                    <p>Viewed date:<span>{{movie.date_added}}</span></p>
+                                    <p>IMDB rating:<span>{{movie.film_id.imdb_rating}}/10</span></p>
+                                    <p>TMDB rating:<span>{{movie.film_id.vote_average}}/10</span></p>
                                 </div>
                             </div>
                         </a>
-
+                    {%endfor%}
                     </div>
                 </div>
             </main>

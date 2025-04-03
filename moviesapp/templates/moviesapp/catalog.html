@@ -2,7 +2,6 @@
 <html lang="en">
 {% load static %}
 {% load allauth i18n %}
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,7 +32,7 @@
                     <div class="header_account">
                         <div class="header_account_detail">
                             <a href="{% url 'profileapp:profile' %}" class="header_account_detail_link">
-                                <img src="{{profile.profile_img.url}}" alt="Avatar" class="header_account_img">
+                                <img src="{{user.profile.profile_img.url}}" alt="Avatar" class="header_account_img">
                             </a>
                         </div>
                         <div class="header_account_menu icon-menu3">
@@ -97,26 +96,26 @@
                                 </div>
                                 <div class="sorting">
                                     <div class="sorting_menu">
+
                                         <ul class="sorting_items">
-                                            <li class="sorting_item"><input type="button" class="sorting_link"
-                                                    value="Popularity"></li>
-                                            <li class="sorting_item"><input type="button" value="Rating"
-                                                    class="sorting_link"></li>
-                                            <li class="sorting_item"><input type="button" value="Release date"
-                                                    class="sorting_link"></li>
+                                            <li class="sorting_item sorting_checked_item"><button type="submit" class="sorting_link active_sorting_link"
+                                                    value="vote_count" name="sorting_value " >Popularity</button></li>
+                                            <li class="sorting_item"><button type="submit" value="vote_average"
+                                                    class="sorting_link" name="sorting_value">Rating</button></li>
+                                            <li class="sorting_item"><button type="submit" value="release_date"
+                                                    class="sorting_link" name="sorting_value">Release date</button></li>
                                         </ul>
                                     </div>
                                     <div class="sorting_divider"></div>
                                     <div class="sort_order">
+
                                         <div class="asc_order">
-                                            <input type="radio" name="my-input" id="asc" value="asc">
-
-
-                                            <label for="yes">ASC</label>
+                                            <input type="radio" name="sort_order" id="asc" value="asc">
+                                            <label for="asc">ASC</label>
                                         </div>
-                                        <div class="desc_order">
-                                            <input type="radio" name="my-input" id="desc" value="desc">
-                                            <label for="yes">DESC</label>
+                                        <div class="desc_order sorting_checked_item">
+                                            <input type="radio" name="sort_order" id="desc" value="desc" checked>
+                                            <label for="desc">DESC</label>
                                         </div>
                                     </div>
 
@@ -129,40 +128,38 @@
                         </div>
                     </div>
                     <div class="catalog_items">
+                        <input type="hidden" class="current_sorting_value" value="popularity">
                         {% for movie in catalog %}
                         <div class="catalog_item">
                             <a href="{% url 'moviesapp:movie_detail' movie.id %}" class="catalog_item_link">
                                 <div class="catalog_item_poster">
-                                    <img src="{% static '' %}" alt="Poster img"
-                                        class="catalog_poster">
+                                    <img src="{% static '' %}" alt="Poster img" class="catalog_poster">
                                 </div>
                                 <span class="catalog_item_name">{{movie.title}}</span>
                                 <div class="catalog_item_info">
                                     <span class="catalog_item_release_date">{{movie.release_date}}</span>
-                                    {%if movie.imdb_rating %}
+                                    {% if imdb_rating %}
                                     <span class="catalog_item_imdb_rating">{{movie.imdb_rating|floatformat:1}}/10 IMDB</span>
-                                    {%else%}
+                                    {% else %}
                                     <span class="catalog_item_imdb_rating">{{movie.vote_average|floatformat:1}}/10 TMDB</span>
-                                    {%endif%}
+                                    {% endif %}
                                 </div>
-                            </a>
-                        </div>
-                        {% endfor %}
+                            </a></div>
+                        {%endfor%}
                     </div>
                 </div>
                 <div class="pagination_container">
                     <div class="pagination_items">
-                        <a href="{% url 'moviesapp:catalog' %}" class="first_link">first</a>
-                        <a href="{% url 'moviesapp:catalog' current_page|add:-1 %}" class="previous_link">previous</a>
-        
+                        <span class="first_link">first</span>
+                        <span class="previous_link">previous</span>
                         <div class="pagination_page_number">
-                            <span>{{current_page}}</span>
+                            <span class="current_page">{{page_num}}</span>
                             <span>of</span>
-                            <span>{{last_page}}</span>
+                            <span class="last_page">∞</span>
                         </div>
         
-                        <a href="{% url 'moviesapp:catalog' current_page|add:1 %}" class="next_link">next</a>
-                        <a href="{% url 'moviesapp:catalog' last_page %}" class="last_link">last</a>
+                        <span class="next_link">next</span>
+                        <span class="last_link">last</span>
                     </div>
                 </div>
         
@@ -178,6 +175,7 @@
     </div>
 
     <script src="{%static 'scripts/scripts.js' %}"></script>
+    <script src="{%static 'scripts/ajax_sorting.js' %}"></script>
 </body>
 
 </html>

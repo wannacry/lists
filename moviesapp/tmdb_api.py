@@ -1,5 +1,6 @@
-﻿YEAR_START = 2001
+﻿YEAR_START = 1887
 YEAR_END = 2025
+
 
 import requests
 from moviesapp.models import Movie
@@ -33,22 +34,28 @@ for year in range(YEAR_START,YEAR_END+1):
                     if response.status_code == 200:
                         movie_item = response.json()
                         try:
-                            created_movie, create = Movie.objects.update_or_create(
-                                defaults={'popularity':movie_item.get('popularity')},
-                                id=movie_item.get('id'), imdb_id=movie_item.get('imdb_id'),
-                                title=movie_item.get('title'), overview=movie_item.get('overview'),
-                                poster_path=movie_item.get('poster_path'),
-                                release_date=movie_item.get('release_date'), revenue=movie_item.get('revenue'),
-                                budget=movie_item.get('budget'),
-                                runtime=movie_item.get('runtime'), vote_average=movie_item.get('vote_average'),
-                                vote_count=movie_item.get('vote_count'),
-                                status=movie_item.get('status')
-                            )
-                            if create:
+                            created_movie, created = Movie.objects.update_or_create(
+                                id=movie_item.get('id'),
+                                defaults={
+                                    'imdb_id':movie_item.get('imdb_id'),
+                                    'popularity':movie_item.get('popularity'),
+                                    'title':movie_item.get('title'),
+                                    'overview':movie_item.get('overview'),
+                                    'poster_path':movie_item.get('poster_path'),
+                                    'release_date':movie_item.get('release_date'),
+                                    'revenue':movie_item.get('revenue'),
+                                    'budget':movie_item.get('budget'),
+                                    'runtime':movie_item.get('runtime'),
+                                    'vote_average':movie_item.get('vote_average'),
+                                    'vote_count':movie_item.get('vote_count'),
+                                    'status':movie_item.get('status'),
+                            })
+
+                            if created:
                                 genres = [genre["id"] for genre in movie_item.get('genres')]
                                 created_movie.genres.set(genres)
                         except Exception as e:
-                            # print(f'Unexpected error {e}')
+                            print(f'Unexpected error on safe stage{e}. MovieId error:{movie_item.get('id')}')
                             continue
                     else:
                         print(f'Error on take movie detail {movie_id} stage: {response.status_code}')

@@ -66,6 +66,7 @@
                     </div>
                     <div class="movie_detail_info_container">
                         <div class="movie_detail_info">
+                            <input type="hidden" class="hiden_mv_id" value="{{movie.id}}">
                             <p>Name:<span>{{movie.title}}</span></p>
                             <p>Duration:<span>{{movie.runtime}}m</span></p>
                             <p>Release date:<span>{{movie.release_date}}</span></p>
@@ -83,13 +84,22 @@
                 </div>
                 <div class="detail_actions">
                     <div class="add_to_list">
-                        <button type="submit" class="add_list_button">+ Add to list</button>
+                        {%if status%}
+                        <button type="submit" class="add_list_button" >{{ status.list_status|title }}</button>
+                        {%else%}
+                        <button type="submit" class="add_list_button" >+ Add to list</button>
+                        {%endif%}
                         <div class="hiden_add_menu">
-                            <button type="submit" class="add_list_item">Planned</button>
-                            <button type="submit" class="add_list_item">Viewed</button>
-                            <button type="submit" class="add_list_item">Abandoned</button>
-                            <button type="submit" class="add_list_item">Postponed</button>
+                            <button type="submit" class="add_list_item" value="planned">Planned</button>
+                            <button type="submit" class="add_list_item" value="viewed">Viewed</button>
+                            <button type="submit" class="add_list_item" value="abandoned">Abandoned</button>
+                            <button type="submit" class="add_list_item" value="postponed">Postponed</button>
+                            {%if status%}
+                            <button type="submit" class="add_list_item" value="delete">Delete</button>
+                            {%endif%}
+                            {% csrf_token %}
                         </div>
+
                     </div>
 <!--                    <button type="submit" class="rating_button">Rate film</button>-->
                 </div>
@@ -127,6 +137,7 @@
         </div>
     </div>
     <script src="{%static 'scripts/add_list.js' %}"></script>
+<script src="{%static 'scripts/movie_list_add.js' %}"></script>
 </body>
 
 </html>
